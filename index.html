@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
+https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2script><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dominik & Nelly | Hochzeitsschätzspiel</title>
@@ -12,7 +12,56 @@ padding:0;
 box-sizing:border-box;
 font-family:Arial,sans-serif;
 }
+<script>
 
+const SUPABASE_URL = "https://bhbolkpumkmhusenbhcz.supabase.co";
+const SUPABASE_KEY = "sb_publishable_Y-CZrSOy5hqtydErQP26DA_oZI4ydZw";
+
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+const form = document.getElementById("guessForm");
+
+form.addEventListener("submit", async (e) => {
+
+  e.preventDefault();
+
+  if(localStorage.getItem("alreadyPlayed")){
+    alert("Du hast bereits teilgenommen.");
+    return;
+  }
+
+  const data = {
+    guest_name: document.getElementById("guest_name").value,
+    glas1: parseInt(document.getElementById("glas1").value),
+    glas2: parseInt(document.getElementById("glas2").value),
+    glas3: parseInt(document.getElementById("glas3").value),
+    glas4: parseInt(document.getElementById("glas4").value),
+    glas5: parseInt(document.getElementById("glas5").value),
+    total_score: 0
+  };
+
+  const { error } = await supabaseClient
+    .from("guesses")
+    .insert([data]);
+
+  if(error){
+    console.error(error);
+    alert("Fehler beim Speichern.");
+    return;
+  }
+
+  localStorage.setItem("alreadyPlayed","true");
+
+  alert("Vielen Dank für deine Teilnahme!");
+
+  form.reset();
+
+});
+
+</script>
 body{
 min-height:100vh;
 background:
@@ -122,23 +171,23 @@ Tippe anschließend auf „Tipp absenden“ und schon bist du dabei!
 
 <form>
 
-<input type="text" placeholder="Dein Name" required>
+<input id="guest_name" type="text" placeholder="Dein Name" required>
 
-<input type="number" placeholder="Volleyball-Aufkleber">
+<input id="glas1" type="number" placeholder="Volleyball-Aufkleber" required>
 
-<input type="number" placeholder="Mini-Kameras">
+<input id="glas2" type="number" placeholder="Mini-Kameras" required>
 
-<input type="number" placeholder="Bleistifte">
+<input id="glas3" type="number" placeholder="Bleistifte" required>
 
-<input type="number" placeholder="Autoreifen & Schraubenschlüssel">
+<input id="glas4" type="number" placeholder="Autoreifen & Schraubenschlüssel" required>
 
-<input type="number" placeholder="Kreuze & Bibeln">
+<input id="glas5" type="number" placeholder="Kreuze & Bibeln" required>
 
 <button type="submit">
 Tipp absenden
 </button>
 
-</form>
+<form id="guessForm">
 
 <div class="info">
 Die Gewinner werden später bekannt gegeben.
