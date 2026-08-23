@@ -235,17 +235,13 @@ font-size:1rem;
 
 <form id="guessForm">
 
-<input type="text" placeholder="👤 Dein Name" required>
+<input id="guest_name" type="text" placeholder="👤 Dein Name" required>
 
-<input type="number" placeholder="🏐 Volleyball-Aufkleber" required>
-
-<input type="number" placeholder="📸 Mini-Kameras" required>
-
-<input type="number" placeholder="✏️ Bleistifte" required>
-
-<input type="number" placeholder="🔧 Autoreifen & Schraubenschlüssel" required>
-
-<input type="number" placeholder="✝️ Kreuze & Bibeln" required>
+<input id="glas1" type="number" placeholder="🏐 Volleyball-Aufkleber" required>
+<input id="glas2" type="number" placeholder="📸 Mini-Kameras" required>
+<input id="glas3" type="number" placeholder="✏️ Bleistifte" required>
+<input id="glas4" type="number" placeholder="🔧 Autoreifen & Schraubenschlüssel" required>
+<input id="glas5" type="number" placeholder="✝️ Kreuze & Bibeln" required>
 
 <button type="submit">
 💖 Tipp absenden
@@ -266,17 +262,71 @@ Die Gewinner werden später bekannt gegeben.
 <script>
 
 document
+
 .getElementById("guessForm")
-.addEventListener("submit",function(e){
+
+.addEventListener("submit", async function(e){
 
 e.preventDefault();
 
+if(localStorage.getItem("hochzeit2026")){
+
+alert("Du hast bereits teilgenommen.");
+
+return;
+
+}
+
+const response = await fetch(
+
+"https://bhbolkpumkmhusenbhcz.supabase.co/rest/v1/guesses",
+
+{
+
+method:"POST",
+
+headers:{
+
+"apikey":"sb_publishable_Y-CZrSOy5hqtydErQP26DA_oZI4ydZw",
+
+"Authorization":"Bearer sb_publishable_Y-CZrSOy5hqtydErQP26DA_oZI4ydZw",
+
+"Content-Type":"application/json",
+
+"Prefer":"return=minimal"
+
+},
+
+body:JSON.stringify({
+
+guest_name:document.getElementById("guest_name").value,
+
+glas1:Number(document.getElementById("glas1").value),
+
+glas2:Number(document.getElementById("glas2").value),
+
+glas3:Number(document.getElementById("glas3").value),
+
+glas4:Number(document.getElementById("glas4").value),
+
+glas5:Number(document.getElementById("glas5").value),
+
+total_score:0
+})
+}
+);
+if(response.status === 201){
+localStorage.setItem("hochzeit2026","true");
 document
 .getElementById("successBox")
 .style.display="block";
-
+document
+.getElementById("guessForm")
+.reset();
+}else{
+alert("Fehler beim Speichern. Status: " + response.status)
+}
 });
-
 </script>
 
 </body>
