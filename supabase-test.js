@@ -1,1 +1,1 @@
-alert("supabase-test.js geladen");
+console.log("supabase-test.js geladen");
