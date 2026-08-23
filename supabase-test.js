@@ -1,1 +1,7 @@
-console.log("supabase-test.js geladen");
+console.log("Datei geladen");
+
+async function testSave() {
+  alert("JS läuft");
+}
+
+testSave();
