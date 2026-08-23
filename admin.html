@@ -31,6 +31,17 @@ font-size:18px;
 margin-bottom:20px;
 }
 
+button{
+padding:12px 20px;
+border:none;
+border-radius:10px;
+background:#f06292;
+color:white;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
+}
+
 table{
 width:100%;
 border-collapse:collapse;
@@ -48,26 +59,9 @@ background:#f06292;
 color:white;
 }
 
-input{
-padding:10px;
-margin:5px;
-width:140px;
-}
-
-button{
-padding:12px 20px;
-border:none;
-border-radius:10px;
-background:#f06292;
-color:white;
-font-weight:bold;
-cursor:pointer;
-margin-top:10px;
-}
-
 #winnerBox{
 margin-top:25px;
-padding:15px;
+padding:20px;
 background:#fff7e6;
 border-radius:10px;
 }
@@ -83,16 +77,6 @@ border-radius:10px;
 <p id="countBox">
 👥 Teilnehmer: 0
 </p>
-
-<h2>Gewinner berechnen</h2>
-
-<input id="correct1" type="number" placeholder="Glas 1">
-<input id="correct2" type="number" placeholder="Glas 2">
-<input id="correct3" type="number" placeholder="Glas 3">
-<input id="correct4" type="number" placeholder="Glas 4">
-<input id="correct5" type="number" placeholder="Glas 5">
-
-<br>
 
 <button onclick="calculateWinners()">
 🏆 Gewinner berechnen
@@ -157,4 +141,68 @@ tableBody.innerHTML += `
 <td>${item.glas1}</td>
 <td>${item.glas2}</td>
 <td>${item.glas3}</td>
-<td>${
+<td>${item.glas4}</td>
+<td>${item.glas5}</td>
+</tr>
+`;
+
+});
+
+}
+
+function calculateWinners(){
+
+const c1 = 225;
+const c2 = 49;
+const c3 = 100;
+const c4 = 384;
+const c5 = 272;
+
+participants.forEach(p => {
+
+p.score =
+Math.abs(p.glas1 - c1) +
+Math.abs(p.glas2 - c2) +
+Math.abs(p.glas3 - c3) +
+Math.abs(p.glas4 - c4) +
+Math.abs(p.glas5 - c5);
+
+});
+
+participants.sort((a,b) => a.score - b.score);
+
+let html = `
+<h2>🏆 Top 5 Gewinner</h2>
+<ol>
+`;
+
+participants.slice(0,5).forEach((p,index) => {
+
+let medal = "🏅";
+
+if(index === 0) medal = "🥇";
+if(index === 1) medal = "🥈";
+if(index === 2) medal = "🥉";
+
+html += `
+<li>
+${medal}
+<b>${p.guest_name}</b>
+- Abweichung: ${p.score}
+</li>
+`;
+
+});
+
+html += "</ol>";
+
+document.getElementById("winnerBox").innerHTML = html;
+
+}
+
+loadData();
+
+</script>
+
+</body>
+</html>
