@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hochzeitsspiel Admin</title>
+<title>🏆 Hochzeitsspiel Admin</title>
 
 <style>
 
@@ -23,12 +23,18 @@ box-shadow:0 5px 20px rgba(0,0,0,0.1);
 }
 
 h1{
+margin-bottom:10px;
+}
+
+#countBox{
+font-size:18px;
 margin-bottom:20px;
 }
 
 table{
 width:100%;
 border-collapse:collapse;
+margin-top:20px;
 }
 
 th,td{
@@ -38,8 +44,32 @@ text-align:left;
 }
 
 th{
-background:#ff6fa5;
+background:#f06292;
 color:white;
+}
+
+input{
+padding:10px;
+margin:5px;
+width:140px;
+}
+
+button{
+padding:12px 20px;
+border:none;
+border-radius:10px;
+background:#f06292;
+color:white;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
+}
+
+#winnerBox{
+margin-top:25px;
+padding:15px;
+background:#fff7e6;
+border-radius:10px;
 }
 
 </style>
@@ -50,11 +80,27 @@ color:white;
 
 <h1>🏆 Hochzeitsspiel Admin</h1>
 
-<button onclick="loadData()">
-Teilnehmer laden
+<p id="countBox">
+👥 Teilnehmer: 0
+</p>
+
+<h2>Gewinner berechnen</h2>
+
+<input id="correct1" type="number" placeholder="Glas 1">
+<input id="correct2" type="number" placeholder="Glas 2">
+<input id="correct3" type="number" placeholder="Glas 3">
+<input id="correct4" type="number" placeholder="Glas 4">
+<input id="correct5" type="number" placeholder="Glas 5">
+
+<br>
+
+<button onclick="calculateWinners()">
+🏆 Gewinner berechnen
 </button>
 
-<br><br>
+<div id="winnerBox"></div>
+
+<hr style="margin:25px 0;">
 
 <table>
 
@@ -79,6 +125,8 @@ Teilnehmer laden
 
 <script>
 
+let participants = [];
+
 async function loadData(){
 
 const response = await fetch(
@@ -91,14 +139,17 @@ headers:{
 }
 );
 
-const data = await response.json();
+participants = await response.json();
+
+document.getElementById("countBox").innerText =
+"👥 Teilnehmer: " + participants.length;
 
 const tableBody =
 document.getElementById("tableBody");
 
 tableBody.innerHTML = "";
 
-data.forEach(item => {
+participants.forEach(item => {
 
 tableBody.innerHTML += `
 <tr>
@@ -106,16 +157,4 @@ tableBody.innerHTML += `
 <td>${item.glas1}</td>
 <td>${item.glas2}</td>
 <td>${item.glas3}</td>
-<td>${item.glas4}</td>
-<td>${item.glas5}</td>
-</tr>
-`;
-
-});
-
-}
-
-</script>
-
-</body>
-</html>
+<td>${
