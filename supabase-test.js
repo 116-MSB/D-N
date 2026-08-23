@@ -1,1 +1,1 @@
-alert("VERSION 99");
+alert("Datei wurde geladen");
