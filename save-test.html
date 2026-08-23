@@ -1,15 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>Supabase Test</title>
+
+https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2script>
+
 </head>
 <body>
 
 <h1>Supabase Test</h1>
 
-<button onclick="alert('Testseite läuft')">
-Test
+<button id="testBtn">
+Testdatensatz speichern
 </button>
+
+<script>
+
+const supabaseUrl =
+"https://bhbolkpumkmhusenbhcz.supabase.co";
+
+const supabaseKey =
+"sb_publishable_Y-CZrSOy5hqtydErQP26DA_oZI4ydZw";
+
+const supabaseClient =
+supabase.createClient(
+supabaseUrl,
+supabaseKey
+);
+
+document
+.getElementById("testBtn")
+.addEventListener("click", async () => {
+
+const { error } =
+await supabaseClient
+.from("guesses")
+.insert([
+{
+guest_name: "TEST",
+glas1: 1,
+glas2: 2,
+glas3: 3,
+glas4: 4,
+glas5: 5,
+total_score: 0
+}
+]);
+
+if(error){
+alert("Fehler: " + error.message);
+console.log(error);
+}else{
+alert("Datensatz gespeichert!");
+}
+
+});
+
+</script>
 
 </body>
 </html>
