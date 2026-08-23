@@ -1,150 +1,48 @@
 <!DOCTYPE html>
 <html lang="de">
-https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2script><head>
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dominik & Nelly | Hochzeitsschätzspiel</title>
+<title>Dominik & Nelly Hochzeitsschätzspiel</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-<script>
-
-const SUPABASE_URL = "https://bhbolkpumkmhusenbhcz.supabase.co";
-const SUPABASE_KEY = "sb_publishable_Y-CZrSOy5hqtydErQP26DA_oZI4ydZw";
-
-const supabaseClient = supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
-const form = document.getElementById("guessForm");
-
-form.addEventListener("submit", async (e) => {
-
-  e.preventDefault();
-
-  if(localStorage.getItem("alreadyPlayed")){
-    alert("Du hast bereits teilgenommen.");
-    return;
-  }
-
-  const data = {
-    guest_name: document.getElementById("guest_name").value,
-    glas1: parseInt(document.getElementById("glas1").value),
-    glas2: parseInt(document.getElementById("glas2").value),
-    glas3: parseInt(document.getElementById("glas3").value),
-    glas4: parseInt(document.getElementById("glas4").value),
-    glas5: parseInt(document.getElementById("glas5").value),
-    total_score: 0
-  };
-
-  const { error } = await supabaseClient
-    .from("guesses")
-    .insert([data]);
-
-  if(error){
-    console.error(error);
-    alert("Fehler beim Speichern.");
-    return;
-  }
-
-  localStorage.setItem("alreadyPlayed","true");
-
-  alert("Vielen Dank für deine Teilnahme!");
-
-  form.reset();
-
-});
-
-</script>
 body{
-min-height:100vh;
-background:
-linear-gradient(
-rgba(255,255,255,0.20),
-rgba(255,255,255,0.20)
-),
-url("./d9e5f6cd-53d2-4e7d-8cfa-e5e9dfe75884.JPG");
-background-size:cover;
-background-position:center;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
+  font-family: Arial, sans-serif;
+  background-image:url('./d9e5f6cd-53d2-4e7d-8cfa-e5e9dfe75884.JPG');
+  background-size:cover;
+  background-position:center;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
 .card{
-max-width:800px;
-width:100%;
-background:rgba(255,255,255,0.22);
-backdrop-filter:blur(8px);
-border-radius:25px;
-padding:40px;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  background:rgba(255,255,255,0.75);
+  padding:40px;
+  border-radius:20px;
+  max-width:800px;
+  width:90%;
 }
 
 h1{
-text-align:center;
-color:#e86aa6;
-margin-bottom:10px;
-}
-
-.date{
-text-align:center;
-margin-bottom:25px;
-color:#666;
-font-weight:bold;
-}
-
-.intro{
-line-height:1.6;
-margin-bottom:30px;
-text-align:center;
+  text-align:center;
+  color:#e86aa6;
 }
 
 input{
-width:100%;
-padding:12px;
-margin-top:10px;
-margin-bottom:15px;
-border:1px solid #ddd;
-border-radius:10px;
-font-size:16px;
+  width:100%;
+  padding:12px;
+  margin:10px 0;
 }
 
 button{
-width:100%;
-padding:15px;
-border:none;
-background:#ff7bac;
-color:white;
-font-size:18px;
-font-weight:bold;
-border-radius:12px;
-cursor:pointer;
-}
-
-button:hover{
-background:#ff6399;
-}
-
-.info{
-margin-top:20px;
-text-align:center;
-color:#666;
-font-style:italic;
-}
-
-.footer{
-margin-top:20px;
-text-align:center;
-font-size:14px;
-color:#999;
+  width:100%;
+  padding:15px;
+  background:#ff7bac;
+  color:white;
+  border:none;
+  border-radius:10px;
 }
 </style>
 
@@ -155,47 +53,21 @@ color:#999;
 
 <h1>💖 Dominik & Nelly 💖</h1>
 
-<div class="date">
-01.09.2026
-</div>
+<p>
+Herzlich willkommen zum Schätzspiel an Dominik's & Nelly's Hochzeit.
+</p>
 
-<div class="intro">
-Herzlich willkommen zum Schätzspiel an Dominik's & Nelly's Hochzeit.<br><br>
+<input type="text" placeholder="Dein Name">
 
-Wie kannst du daran teilnehmen?<br>
-Trage einfach deinen Namen und jeweils die Anzahl der Gegenstände ein, die sich im jeweiligen Glas befinden.<br>
-Tippe anschließend auf „Tipp absenden“ und schon bist du dabei!
-<br><br>
-🎉 Es gibt 5 Gewinner! 🎉
-</div>
+<input type="number" placeholder="Volleyball-Aufkleber">
+<input type="number" placeholder="Mini-Kameras">
+<input type="number" placeholder="Bleistifte">
+<input type="number" placeholder="Autoreifen & Schraubenschlüssel">
+<input type="number" placeholder="Kreuze & Bibeln">
 
-<form>
+<button>Tipp absenden</button>
 
-<input id="guest_name" type="text" placeholder="Dein Name" required>
-
-<input id="glas1" type="number" placeholder="Volleyball-Aufkleber" required>
-
-<input id="glas2" type="number" placeholder="Mini-Kameras" required>
-
-<input id="glas3" type="number" placeholder="Bleistifte" required>
-
-<input id="glas4" type="number" placeholder="Autoreifen & Schraubenschlüssel" required>
-
-<input id="glas5" type="number" placeholder="Kreuze & Bibeln" required>
-
-<button type="submit">
-Tipp absenden
-</button>
-
-<form id="guessForm">
-
-<div class="info">
-Die Gewinner werden später bekannt gegeben.
-</div>
-
-<div class="footer">
-Dominik & Nelly Hochzeit 2026 ❤️
-</div>
+<p>Die Gewinner werden später bekannt gegeben.</p>
 
 </div>
 
