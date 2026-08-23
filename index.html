@@ -274,9 +274,10 @@ if(localStorage.getItem("hochzeit2026")){
 alert("Du hast bereits teilgenommen.");
 
 return;
+}
 
 const response = await fetch(
-"https://bhbolkpumkmhusenbhcz.supabase.co/rest/v1/guesses",
+"https://bhbolkpumkmhhusenbhcz.supabse.co/rest/v1/guesses",
 {
 
 method:"POST",
@@ -320,7 +321,7 @@ document
 .getElementById("guessForm")
 .reset();
 }else{
-alert("Fehler beim Speichern. Status: " + response.status)
+alert("Fehler beim Speichern. Status: " + response.status);
 }
 });
 </script>
