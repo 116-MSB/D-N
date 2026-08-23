@@ -1,11 +1,153 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Dominik & Nelly Hochzeitsschätzspiel</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dominik & Nelly | Hochzeitsschätzspiel</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+min-height:100vh;
+background:linear-gradient(
+rgba(255,192,203,0.55),
+rgba(255,228,181,0.55)
+),
+url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.card{
+max-width:800px;
+width:100%;
+background:rgba(255,255,255,0.92);
+backdrop-filter:blur(8px);
+border-radius:25px;
+padding:40px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1{
+text-align:center;
+color:#e86aa6;
+margin-bottom:10px;
+}
+
+.date{
+text-align:center;
+margin-bottom:25px;
+color:#666;
+font-weight:bold;
+}
+
+.intro{
+line-height:1.6;
+margin-bottom:30px;
+text-align:center;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:10px;
+margin-bottom:15px;
+border:1px solid #ddd;
+border-radius:10px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:15px;
+border:none;
+background:#ff7bac;
+color:white;
+font-size:18px;
+font-weight:bold;
+border-radius:12px;
+cursor:pointer;
+}
+
+button:hover{
+background:#ff6399;
+}
+
+.info{
+margin-top:20px;
+text-align:center;
+color:#666;
+font-style:italic;
+}
+
+.footer{
+margin-top:20px;
+text-align:center;
+font-size:14px;
+color:#999;
+}
+</style>
+
 </head>
 <body>
-  <h1>Dominik & Nelly Hochzeitsschätzspiel</h1>
-  <p>Die Website wird gerade eingerichtet.</p>
+
+<div class="card">
+
+<h1>💍 Dominik & Nelly</h1>
+
+<div class="date">
+01.09.2026
+</div>
+
+<div class="intro">
+Herzlich willkommen zum Schätzspiel an Dominik's & Nelly's Hochzeit.<br><br>
+
+Wie kannst du daran teilnehmen?<br>
+Trage einfach deinen Namen und jeweils die Anzahl der Gegenstände ein, die sich im jeweiligen Glas befinden.<br>
+Tippe anschließend auf „Tipp absenden“ und schon bist du dabei!
+<br><br>
+🎉 Es gibt 5 Gewinner! 🎉
+</div>
+
+<form>
+
+<input type="text" placeholder="Dein Name" required>
+
+<input type="number" placeholder="Volleyball-Aufkleber">
+
+<input type="number" placeholder="Mini-Kameras">
+
+<input type="number" placeholder="Bleistifte">
+
+<input type="number" placeholder="Autoreifen & Schraubenschlüssel">
+
+<input type="number" placeholder="Kreuze & Bibeln">
+
+<button type="submit">
+Tipp absenden
+</button>
+
+</form>
+
+<div class="info">
+Die Gewinner werden später bekannt gegeben.
+</div>
+
+<div class="footer">
+Dominik & Nelly Hochzeit 2026 ❤️
+</div>
+
+</div>
+
 </body>
 </html>
