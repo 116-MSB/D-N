@@ -3,68 +3,298 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dominik & Nelly Hochzeitsschätzspiel</title>
-</head>
 
-<body style="
-font-family:Arial;
-text-align:center;
-padding:40px;
-background-image:url('./d9e5f6cd-53d2-4e7d-8cfa-e5e9dfe75884.JPG');
+<title>Dominik & Nelly | Hochzeitsschätzspiel</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+min-height:100vh;
+
+background:
+linear-gradient(
+rgba(0,0,0,0.25),
+rgba(0,0,0,0.25)
+),
+url('./d9e5f6cd-53d2-4e7d-8cfa-e5e9dfe75884.JPG');
+
 background-size:cover;
 background-position:center;
-min-height:100vh;
-">
 
-<div style="
-max-width:700px;
-margin:auto;
+display:flex;
+justify-content:center;
+align-items:center;
+
+padding:25px;
+}
+
+.card{
+
+width:100%;
+max-width:850px;
+
+padding:45px;
+
+background:rgba(255,255,255,0.18);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,0.3);
+
+border-radius:30px;
+
+box-shadow:
+0 20px 40px rgba(0,0,0,0.15);
+
+color:white;
+
+}
+
+h1{
+
+text-align:center;
+
+font-size:3rem;
+
+margin-bottom:10px;
+
+font-weight:700;
+
+}
+
+.date{
+
+text-align:center;
+
+font-size:1.2rem;
+
+margin-bottom:35px;
+
+opacity:0.9;
+
+}
+
+.intro{
+
+text-align:center;
+
+line-height:1.7;
+
+font-size:1.1rem;
+
+margin-bottom:35px;
+
+}
+
+.winner{
+
+text-align:center;
+
+font-size:1.3rem;
+
+font-weight:bold;
+
+margin-top:10px;
+
+margin-bottom:30px;
+
+color:#ffe6f1;
+
+}
+
+input{
+
+width:100%;
+
+padding:16px;
+
+margin-bottom:15px;
+
+border:none;
+
+border-radius:15px;
+
+font-size:16px;
+
+background:
+rgba(255,255,255,0.9);
+
+outline:none;
+
+}
+
+input:focus{
+
+box-shadow:
+0 0 0 3px rgba(255,105,180,0.3);
+
+}
+
+button{
+
+width:100%;
+
+padding:18px;
+
+border:none;
+
+border-radius:15px;
+
+font-size:18px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+color:white;
+
+background:
+linear-gradient(
+90deg,
+#ff6fa5,
+#ff9f80
+);
+
+transition:0.3s;
+
+}
+
+button:hover{
+
+transform:translateY(-2px);
+
+box-shadow:
+0 8px 20px rgba(0,0,0,0.25);
+
+}
+
+.info{
+
+margin-top:25px;
+
+text-align:center;
+
+font-style:italic;
+
+opacity:0.95;
+
+}
+
+.success{
+
+display:none;
+
+background:white;
+
+color:#28a745;
+
+padding:15px;
+
+margin-top:20px;
+
+border-radius:12px;
+
+text-align:center;
+
+font-weight:bold;
+
+}
+
+@media(max-width:768px){
+
+.card{
 padding:30px;
-background:rgba(255,255,255,0.45);
-border-radius:20px;
-">
+}
+
+h1{
+font-size:2.2rem;
+}
+
+.intro{
+font-size:1rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
 
 <h1>💖 Dominik & Nelly 💖</h1>
 
-<h3>01.09.2026</h3>
+<div class="date">
+01.09.2026
+</div>
 
-<p>
-Herzlich willkommen zum Schätzspiel an Dominik's & Nelly's Hochzeit.
-</p>
-<p>
-Wie kannst du daran teilnehmen?
-</p>
-<p>
-Trage einfach deinen Namen und jeweils die Anzahl der Gegenstände ein, die sich im jeweiligen Glas befinden.
-Tippe anschließend auf "Tipp Absenden" und schon bist du dabei!
-</p>
+<div class="intro">
 
-<p>
-🎉 Es gibt 5 Gewinner! 🎉
-</p>
+Herzlich willkommen zu unserem Hochzeitsschätzspiel.
 
-<input style="width:90%;padding:10px;margin:5px"
-placeholder="Dein Name">
+<br><br>
 
-<br>
+Trage deinen Namen und deine Schätzungen ein.
 
-<input style="width:90%;padding:10px;margin:5px"
-placeholder="Volleyball-Aufkleber">
+</div>
 
-<br>
+<div class="winner">
+🏆 Die 5 besten Schätzungen gewinnen! 🏆
+</div>
 
-<input style="width:90%;padding:10px;margin:5px"
-placeholder="Mini-Kameras">
+<form id="guessForm">
 
-<br>
+<input type="text" placeholder="👤 Dein Name" required>
 
-<input style="width:90%;padding:10px;margin:5px"
-placeholder="Bleistifte">
+<input type="number" placeholder="🏐 Volleyball-Aufkleber" required>
 
-<br>
+<input type="number" placeholder="📸 Mini-Kameras" required>
 
-<input style="width:90%;padding:10px;margin:5px"
-placeholder="Autoreifen & Schraubenschlüssel">
+<input type="number" placeholder="✏️ Bleistifte" required>
 
-<input style="width:90%;padding:10px;margin:5px"
-placeholder="Kreuze & Bibeln">
+<input type="number" placeholder="🔧 Autoreifen & Schraubenschlüssel" required>
+
+<input type="number" placeholder="✝️ Kreuze & Bibeln" required>
+
+<button type="submit">
+💖 Tipp absenden
+</button>
+
+</form>
+
+<div id="successBox" class="success">
+✅ Viel Glück!
+</div>
+
+<div class="info">
+Die Gewinner werden später bekannt gegeben.
+</div>
+
+</div>
+
+<script>
+
+document
+.getElementById("guessForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+document
+.getElementById("successBox")
+.style.display="block";
+
+});
+
+</script>
+
+</body>
+</html>
