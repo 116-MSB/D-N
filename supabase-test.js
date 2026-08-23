@@ -1,5 +1,1 @@
-document
-.getElementById("saveBtn")
-.addEventListener("click", () => {
-  alert("Button funktioniert");
-});
+alert("VERSION 99");
